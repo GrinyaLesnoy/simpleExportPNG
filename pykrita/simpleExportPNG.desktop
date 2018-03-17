@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=simpleExportPNG
+X-Krita-Manual=Manual.html
+X-Python-2-Compatible=false
+Name=Export PNG
+Name[en_GB]=Export to PNG 
+Comment=simple export to PNG 
+Comment[en_GB]=simple export to PNG 

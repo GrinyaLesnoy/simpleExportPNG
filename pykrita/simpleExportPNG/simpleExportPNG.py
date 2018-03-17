@@ -1,11 +1,21 @@
 import sys 
+import importlib
+import krita
 from krita import * 
 class simpleExportPNGExtension(krita.Extension):
     def __init__(self, parent):
         super().__init__(parent)
 		
     def setup(self):
-        action = krita.Krita.instance().createAction("simpleExportPNG", "Export to PNG")
+        try:
+            action = krita.Krita.instance().createAction("simpleExportPNG", "Export to PNG")
+            action.setToolTip("simple Export to PNG")
+            action.triggered.connect(self.exportPNG)
+        except:
+            pass 
+		
+    def createActions(self, window):
+        action = window.createAction("simpleExportPNG", "Export to PNG", "tools/scripts")
         action.setToolTip("simple Export to PNG")
         action.triggered.connect(self.exportPNG)
 
@@ -19,8 +29,6 @@ class simpleExportPNGExtension(krita.Extension):
         i.setProperty("alpha", True)
         i.setProperty("compression", 3) 
         d.exportImage(path,i)
-		
-    def createActions(self, window):
-        action = window.createAction("simpleExportPNG", "Simple export to PNG", "tools/scripts")
+		 
 
 Scripter.addExtension(simpleExportPNGExtension(krita.Krita.instance()))
